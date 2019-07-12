@@ -1,0 +1,227 @@
+<html lang="en" class="js">
+  <head>
+    <meta charset="utf-8" />
+    <title>Zorang Rasa Model</title>
+    <link
+      rel="canonical"
+      href="https://css-tricks.com/examples/DragAndDropFileUploading/"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!--<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <!-- remove this if you use Modernizr -->
+    <script>
+      (function(e, t, n) {
+        var r = e.querySelectorAll("html")[0];
+        r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2");
+      })(document, window, 0);
+    </script>
+
+    <style>
+      .panel-heading .accordion-toggle:after {
+        /* symbol for "opening" panels */
+        font-family: "Glyphicons Halflings";
+        content: "\e114";
+        float: right;
+        margin-left: 15px;
+      }
+
+      .panel-heading .accordion-toggle.collapsed:after {
+        /* symbol for "collapsed" panels */
+        content: "\e080";
+        /* adjust as needed, taken from bootstrap.css */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container fileUploaderDiv" role="main">
+      <h1><a href="/article-url"></a></h1>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        novalidate=""
+        class="box has-advanced-upload"
+      >
+        <div class="box__input">
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="box__file"
+            data-multiple-caption="{count} files selected"
+            multiple
+          />
+          <label for="file"
+            ><strong>Choose a file</strong
+            ><span class="box__dragndrop"> or drag it here</span>.</label
+          >
+          <button type="submit" class="box__button">
+            Upload
+          </button>
+        </div>
+        <div class="box__uploading">Uploading…</div>
+        <div class="box__success">
+          Done!
+          <a
+            href="https://css-tricks.com/examples/DragAndDropFileUploading//?submit-on-demand"
+            class="box__restart"
+            role="button"
+            >Upload more?</a
+          >
+        </div>
+        <div class="box__error">
+          Error! <span></span>.
+          <a
+            href="https://css-tricks.com/examples/DragAndDropFileUploading//?submit-on-demand"
+            class="box__restart"
+            role="button"
+            >Try again!</a
+          >
+        </div>
+        <input type="hidden" name="ajax" value="1" />
+      </form>
+    </div>
+
+    <div class="fileDetailsFrame hide">
+      <div class="panel panel-default template">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a
+              class="accordion-toggle"
+              data-toggle="collapse"
+              data-parent="#accordion"
+              href="#collapse"
+              id="collapseHeader0"
+            ></a>
+          </h4>
+        </div>
+        <div id="collapse" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div
+              class="homePageContainer-form validate-form"
+              action="#"
+              method="POST"
+            >
+              <div
+                class="wrap-input1 validate-input"
+                data-validate="Message is required"
+              >
+                <textarea
+                  class="input1 text0"
+                  name="message"
+                  id="text0"
+                  placeholder="Text or Sentence"
+                ></textarea>
+                <span class="shadow-input1"></span>
+              </div>
+              <div
+                class="wrap-input1 validate-input"
+                data-validate="Message is required"
+              >
+                <label class="labelField">Start Date: </label>
+                <input
+                  type="text"
+                  class="input2"
+                  name="startDate"
+                  id="startDate0"
+                  placeholder="Start Date"
+                />
+                <label class="labelField">End Date: </label>
+                <input
+                  type="text"
+                  class="input2"
+                  name="endDate"
+                  id="endDate0"
+                  placeholder="End Date"
+                />
+                <span class="shadow-input1"></span>
+              </div>
+              <div
+                class="wrap-input1 validate-input"
+                data-validate="Message is required"
+              >
+                <label class="labelField">First Party: </label>
+                <input
+                  type="text"
+                  class="input2"
+                  name="firstParty"
+                  id="firstParty0"
+                  placeholder="First Party"
+                />
+                <label class="labelField">Second Party: </label>
+                <input
+                  type="text"
+                  class="input2"
+                  name="secondParty"
+                  id="secondParty0"
+                  placeholder="Second Party"
+                />
+                <span class="shadow-input1"></span>
+              </div>
+              <div
+                class="wrap-input1 validate-input"
+                data-validate="Message is required"
+              >
+                <label class="labelField">First Party Address: </label>
+                <textarea
+                  class="input2"
+                  name="firstPartyAddress"
+                  id="firstPartyAddress0"
+                  placeholder="First Party Address"
+                >
+                </textarea>
+                <label class="labelField">Second Party Address: </label>
+                <textarea
+                  class="input2"
+                  name="secondPartyAddress"
+                  id="secondPartyAddress0"
+                  placeholder="Second Party Address"
+                >
+                </textarea>
+                <span class="shadow-input1"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-homePageContainer-form-btn actionButtons hide">
+      <button class="homePageContainer-form-btn" id="getModelResponse0">
+        <span>
+          Fetch Entities
+          <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </span>
+      </button>
+      <button
+        class="homePageContainer-form-btn"
+        id="generateJsonBTN0"
+        onclick="loader()"
+      >
+        <span>
+          Re-Train Rasa Model
+          <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </span>
+      </button>
+      <div id="loader"></div>
+    </div>
+
+    <script>
+      function loader() {
+        $("#getModelResponse0").remove();
+
+        document.getElementById(
+          "loader"
+        ).innerHTML = `<h5>Model Traning in Progress..You will directed to home page</h5><iframe src="https://giphy.com/embed/9kHVljc89cwwg" width="480" height="225" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+      }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="rasaFileUploader.js"></script>
+    <script src="rasaModel.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+  </body>
+</html>
